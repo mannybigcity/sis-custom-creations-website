@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DIY Kits from SIS Custom Creations: subscription-ready creative kits for families, classrooms, gifts, and hands-on events." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.siscustomcreations.com/diy-kits/" />
+  <meta property="og:title" content="DIY Kits | SIS Custom Creations" />
+  <meta property="og:description" content="Real DIY kit photos, kit gallery, and a PayPal subscription-ready call to action." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.siscustomcreations.com/diy-kits/" />
+  <meta property="og:image" content="https://www.siscustomcreations.com/assets/DIY-KITS-15.jpg" />
+  <title>DIY Kits | SIS Custom Creations</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-brand="SIS Custom Creations" data-offer="DIY Kit Subscription / Monthly Kit Club" data-offer-slug="diy-kit-subscription">
+  <div class="kit-intro" id="kit-intro" aria-hidden="true">
+    <video id="kit-video" class="kit-video" muted playsinline preload="none" poster="../assets/DIY-KITS-15.jpg" data-src=""></video>
+    <div class="assembly-stage" id="assembly-stage" aria-label="Animated DIY kit assembly preview">
+      <img class="piece piece-a" src="../assets/DIY-KITS-01.jpg" alt="" />
+      <img class="piece piece-b" src="../assets/DIY-KITS-06.jpg" alt="" />
+      <img class="piece piece-c" src="../assets/DIY-KITS-15.jpg" alt="" />
+      <span class="laser-line" aria-hidden="true"></span>
+      <span class="glue-dot" aria-hidden="true"></span>
+      <span class="paint-wash" aria-hidden="true"></span>
+    </div>
+    <div class="kit-intro-copy">
+      <p class="eyebrow">DIY Kits</p>
+      <h1>Cut. Build. Paint. Reveal.</h1>
+      <p>A quick preview of the kit journey: raw pieces, paint, assembly, and the finished craft moment.</p>
+      <button class="button light" type="button" id="skip-kit-intro">Enter page</button>
+    </div>
+  </div>
+
+  <header class="service-header">
+    <a class="brand" href="../index.html" aria-label="SIS Custom Creations home">
+      <img src="../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+      <span>SIS Custom Creations</span>
+    </a>
+    <nav aria-label="DIY Kits navigation">
+      <a href="../index.html">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#subscribe">Subscribe</a>
+      <a href="#request">Request</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Monthly creative kits</p>
+        <h1>Everything they need to make something worth keeping.</h1>
+        <p>DIY Kits are built for families, kids, classrooms, gift buyers, and groups that want a guided craft without chasing supplies.</p>
+        <div class="actions">
+          <a class="button primary" href="#subscribe">View subscription option</a>
+          <a class="button secondary" href="#gallery">See kit photos</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="../assets/DIY-KITS-15.jpg" alt="SIS DIY kit materials arranged for a creative project" />
+      </figure>
+    </section>
+
+    <section class="kit-story" aria-labelledby="story-title">
+      <div>
+        <p class="eyebrow">How it works</p>
+        <h2 id="story-title">A simple before-to-after craft experience.</h2>
+      </div>
+      <div class="steps">
+        <article><span>01</span><h3>Open the kit</h3><p>Materials are organized so the project starts cleanly.</p></article>
+        <article><span>02</span><h3>Assemble and paint</h3><p>Pieces come together with clear guidance and creative freedom.</p></article>
+        <article><span>03</span><h3>Display or gift</h3><p>The finished craft feels personal, polished, and easy to share.</p></article>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head">
+        <p class="eyebrow">Gallery</p>
+        <h2 id="gallery-title">Real SIS kit photos.</h2>
+      </div>
+      <div class="gallery-grid">
+        <img src="../assets/DIY-KITS-01.jpg" alt="DIY kit sample photo 1" />
+        <img src="../assets/DIY-KITS-02.jpg" alt="DIY kit sample photo 2" />
+        <img src="../assets/DIY-KITS-03.jpg" alt="DIY kit sample photo 3" />
+        <img src="../assets/DIY-KITS-06.jpg" alt="DIY kit sample photo 4" />
+        <img src="../assets/DIY-KITS-12.jpg" alt="DIY kit sample photo 5" />
+        <img src="../assets/DIY-KITS-17.jpg" alt="DIY kit sample photo 6" />
+      </div>
+    </section>
+
+    <section class="subscribe" id="subscribe">
+      <div>
+        <p class="eyebrow">Subscription-ready</p>
+        <h2>Join the list for kit updates.</h2>
+        <p>Add the real PayPal subscription URL in <code>config.js</code> when the kit plan is ready. Until then, this button stays as an interest list.</p>
+      </div>
+      <a class="button primary disabled" id="paypal-subscribe" href="#" aria-disabled="true">Join the interest list</a>
+    </section>
+
+    <section class="request" id="request" aria-labelledby="request-title">
+      <div>
+        <p class="eyebrow">Request details</p>
+        <h2 id="request-title">Ask about kits, themes, or group quantities.</h2>
+        <p>Use this when the subscription link is not ready yet or when the customer needs a custom kit quantity.</p>
+      </div>
+      <form class="order-form" id="quote-form" action="#request" method="post">
+        <label class="website-field" aria-hidden="true">Website<input name="Website" type="text" tabindex="-1" autocomplete="off" /></label>
+        <input name="Brand" type="hidden" />
+        <input name="Offer Slug" type="hidden" />
+        <input name="Page Title" type="hidden" />
+        <input name="Lead Source" type="hidden" />
+        <input name="Lead Campaign" type="hidden" />
+        <input name="Landing Page" type="hidden" />
+        <label>Name *<input name="Name" type="text" autocomplete="name" required /></label>
+        <label>Email *<input name="Email" type="email" autocomplete="email" required /></label>
+        <label>Kit type *
+          <select name="Service" required>
+            <option>DIY Kit Subscription / Monthly Kit Club</option>
+            <option>Seasonal DIY Kit</option>
+            <option>Kids DIY Kit</option>
+            <option>Family DIY Kit</option>
+            <option>Group or classroom kit</option>
+          </select>
+        </label>
+        <label>Quantity<input name="Quantity" type="text" placeholder="Example: 1 subscription or 20 kits" /></label>
+        <label class="wide">Project details *<textarea name="Project Details" rows="6" required placeholder="Tell us the age group, theme, timeline, and kit count."></textarea></label>
+        <label class="consent wide"><input type="checkbox" required /> I am ready for SIS Custom Creations to contact me about this kit request.</label>
+        <button class="button primary wide" type="submit">Request Kit Details</button>
+        <p class="form-message wide" id="form-message" aria-live="polite" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+    <p>Create. Connect. Celebrate.</p>
+    <nav aria-label="Footer navigation">
+      <a href="../index.html">Services</a>
+      <a href="../design/index.html">Design Studio</a>
+      <a href="../splatter-paint-parties/index.html">Splatter</a>
+    </nav>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

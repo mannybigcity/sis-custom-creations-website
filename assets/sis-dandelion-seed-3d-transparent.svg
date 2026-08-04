@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 320" role="img" aria-labelledby="title desc">
+  <title id="title">Transparent floating dandelion seed</title>
+  <desc id="desc">A single luminous dandelion seed with transparent background, designed for slow floating page animation.</desc>
+  <defs>
+    <linearGradient id="stem" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdf8"/>
+      <stop offset="0.55" stop-color="#d8c8ff"/>
+      <stop offset="1" stop-color="#5a2c91"/>
+    </linearGradient>
+    <radialGradient id="tip" cx="44%" cy="34%" r="75%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#f1f8ff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#c7b5ff" stop-opacity="0.36"/>
+    </radialGradient>
+    <filter id="floatShadow" x="-70%" y="-70%" width="240%" height="240%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#120b22" flood-opacity="0.22"/>
+      <feDropShadow dx="-4" dy="-4" stdDeviation="7" flood-color="#ffffff" flood-opacity="0.62"/>
+    </filter>
+  </defs>
+  <g filter="url(#floatShadow)" transform="translate(111 172) rotate(-17)">
+    <path d="M0 90 C-8 39 -12 -6 -6 -54" fill="none" stroke="url(#stem)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-5 -54 C-43 -76 -68 -105 -76 -145" fill="none" stroke="#fffdf8" stroke-width="3.2" stroke-linecap="round" opacity="0.92"/>
+    <path d="M-5 -54 C-22 -91 -18 -126 0 -156" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" opacity="0.98"/>
+    <path d="M-5 -54 C34 -80 60 -110 70 -148" fill="none" stroke="#e9f7ff" stroke-width="2.8" stroke-linecap="round" opacity="0.88"/>
+    <path d="M-5 -54 C-54 -52 -90 -66 -111 -94" fill="none" stroke="#fffdf8" stroke-width="2.4" stroke-linecap="round" opacity="0.66"/>
+    <path d="M-5 -54 C45 -51 82 -68 104 -99" fill="none" stroke="#f8fcff" stroke-width="2.4" stroke-linecap="round" opacity="0.66"/>
+    <circle cx="-76" cy="-145" r="8.5" fill="url(#tip)"/>
+    <circle cx="0" cy="-156" r="9.5" fill="url(#tip)"/>
+    <circle cx="70" cy="-148" r="8.5" fill="url(#tip)"/>
+    <circle cx="-111" cy="-94" r="5" fill="url(#tip)" opacity="0.72"/>
+    <circle cx="104" cy="-99" r="5" fill="url(#tip)" opacity="0.72"/>
+    <ellipse cx="1" cy="92" rx="9" ry="17" fill="url(#stem)" opacity="0.9"/>
+    <ellipse cx="-2" cy="86" rx="3.2" ry="8" fill="#fffdf8" opacity="0.72"/>
+  </g>
+</svg>

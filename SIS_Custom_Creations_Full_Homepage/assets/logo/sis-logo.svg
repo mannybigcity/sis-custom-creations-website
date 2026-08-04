@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 210">
+  <defs>
+    <radialGradient id="wash" cx="45%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".95"/>
+      <stop offset="45%" stop-color="#dfe8fb" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#d8c7f0" stop-opacity=".65"/>
+    </radialGradient>
+    <style>
+      .serif{font-family:Georgia,serif;fill:#2f1b55}
+      .script{font-family:"Brush Script MT","Segoe Script",cursive;fill:#4d2f7f}
+      .small{font-family:Arial,sans-serif;fill:#273762;letter-spacing:5px}
+      .seed{stroke:#4d2f7f;stroke-width:1.5;stroke-linecap:round;opacity:.75}
+    </style>
+  </defs>
+  <circle cx="70" cy="70" r="58" fill="url(#wash)"/>
+  <g transform="translate(35,30)">
+    <line x1="33" y1="115" x2="48" y2="45" stroke="#70683b" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="50" cy="42" r="5" fill="#5a3b27"/>
+    <g class="seed">
+      <line x1="50" y1="42" x2="50" y2="5"/><line x1="50" y1="42" x2="77" y2="16"/>
+      <line x1="50" y1="42" x2="88" y2="42"/><line x1="50" y1="42" x2="75" y2="70"/>
+      <line x1="50" y1="42" x2="50" y2="82"/><line x1="50" y1="42" x2="23" y2="68"/>
+      <line x1="50" y1="42" x2="12" y2="42"/><line x1="50" y1="42" x2="22" y2="15"/>
+    </g>
+  </g>
+  <text x="135" y="85" class="serif" font-size="78">SIS</text>
+  <text x="135" y="130" class="script" font-size="44">Custom Creations</text>
+  <text x="138" y="162" class="small" font-size="13">CREATE. CONNECT. CELEBRATE.</text>
+</svg>

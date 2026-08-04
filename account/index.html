@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Check your SIS Custom Creations order status with your order code." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.siscustomcreations.com/account/" />
+  <title>SIS Account | Order Status</title>
+  <link rel="stylesheet" href="../css/home-minimal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../" aria-label="SIS Custom Creations home">
+      <img src="../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+      <span>SIS Custom Creations</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../">Home</a>
+      <a href="../#checkout">Checkout</a>
+      <a href="../#order-status">Order Status</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="account-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Customer account</p>
+        <h1 id="account-title">Check your SIS order status.</h1>
+        <p>Use the order code you received after checkout. Your order, payment, and fulfillment status will load from SIS directly.</p>
+      </div>
+      <figure class="hero-media">
+        <img src="../assets/RamFam_Family_pic.jpg" alt="SIS Custom Creations family portrait" />
+      </figure>
+    </section>
+
+    <section class="status-band" id="order-status" aria-labelledby="status-title">
+      <div class="section-head checkout-head">
+        <div>
+          <p class="eyebrow">Private access</p>
+          <h2 id="status-title">Enter your order code.</h2>
+        </div>
+        <p>This account view is customer-owned and only shows your own SIS order records.</p>
+      </div>
+      <form class="status-form" id="sis-status-form">
+        <label>
+          Order code
+          <input name="access_token" autocomplete="off" placeholder="Order code" required />
+        </label>
+        <button class="checkout-button" type="submit">Show My Order</button>
+      </form>
+      <div class="status-result" id="sis-status-result" hidden></div>
+    </section>
+
+    <section class="checkout-band" aria-labelledby="next-step-title">
+      <div class="section-head checkout-head">
+        <div>
+          <p class="eyebrow">Need to place an order?</p>
+          <h2 id="next-step-title">Start a new order.</h2>
+        </div>
+        <p>If you do not have an order code yet, start at SIS checkout and save your order first.</p>
+      </div>
+      <a class="checkout-button" href="../#checkout">Open Checkout</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+    <p>Create. Connect. Celebrate.</p>
+  </footer>
+  <script src="../js/sis-checkout.js" defer></script>
+</body>
+</html>

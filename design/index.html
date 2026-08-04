@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SIS Custom Creations apparel design studio for custom garments, uploaded art, text, and AI artwork concepts." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.siscustomcreations.com/design/" />
+  <meta property="og:title" content="Custom Apparel Design Studio | SIS Custom Creations" />
+  <meta property="og:description" content="Design custom SIS apparel with product selection, color swatches, text, upload art, and AI artwork generation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.siscustomcreations.com/design/" />
+  <meta property="og:image" content="https://www.siscustomcreations.com/assets/Anima_SIS_Custom_Creations_Logo.png" />
+  <title>Custom Apparel Design Studio | SIS Custom Creations</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="studio-topbar">
+    <a class="brand" href="../index.html" aria-label="SIS Custom Creations home">
+      <img src="../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+      <span>SIS Design Studio</span>
+    </a>
+    <nav aria-label="Design studio navigation">
+      <a href="../index.html">Services</a>
+      <a href="#designer">Designer</a>
+      <a href="#checkout">Checkout</a>
+    </nav>
+  </header>
+
+  <main id="designer" class="designer-app">
+    <aside class="tool-rail" aria-label="Design tools">
+      <button class="tool-button active" type="button" data-panel="products" aria-pressed="true">
+        <span aria-hidden="true">▦</span>
+        Products
+      </button>
+      <button class="tool-button" type="button" data-panel="text" aria-pressed="false">
+        <span aria-hidden="true">T</span>
+        Add Text
+      </button>
+      <button class="tool-button" type="button" data-panel="upload" aria-pressed="false">
+        <span aria-hidden="true">⇧</span>
+        Upload Art
+      </button>
+      <button class="tool-button" type="button" data-panel="ai" aria-pressed="false">
+        <span aria-hidden="true">✦</span>
+        AI Design
+      </button>
+      <button class="tool-button" type="button" data-panel="names" aria-pressed="false">
+        <span aria-hidden="true">#</span>
+        Names
+      </button>
+    </aside>
+
+    <section class="side-panel" aria-label="Product and design settings">
+      <div class="panel-head">
+        <p class="eyebrow">SIS Custom Creations</p>
+        <h1>Design your garment</h1>
+        <p>Choose a product, place text or art, then generate an original AI artwork layer when needed.</p>
+      </div>
+
+      <div class="panel-section active" data-panel-content="products">
+        <div class="section-title">
+          <h2>Products</h2>
+          <span id="productCount">Loading</span>
+        </div>
+        <div id="productList" class="product-list" role="list"></div>
+        <div class="color-block">
+          <div class="section-title">
+            <h2>Color</h2>
+            <span id="selectedColorLabel">White</span>
+          </div>
+          <div id="colorSwatches" class="color-swatches" role="radiogroup" aria-label="Garment color"></div>
+        </div>
+      </div>
+
+      <div class="panel-section" data-panel-content="text">
+        <h2>Add Text</h2>
+        <label for="textInput">Text on garment</label>
+        <input id="textInput" maxlength="40" placeholder="Family Reunion" />
+        <div class="two-col">
+          <label>Text color
+            <input id="textColor" type="color" value="#5a28c9" />
+          </label>
+          <label>Size
+            <input id="textSize" type="range" min="28" max="92" value="54" />
+          </label>
+        </div>
+        <button id="addTextButton" class="secondary-action" type="button">Place Text</button>
+      </div>
+
+      <div class="panel-section" data-panel-content="upload">
+        <h2>Upload Art</h2>
+        <label for="uploadInput">Artwork file</label>
+        <input id="uploadInput" type="file" accept="image/png,image/jpeg,image/webp" />
+        <p class="note">PNG, JPG, or WEBP up to 6MB. Uploads stay in your session unless you choose to use them in an AI step.</p>
+        <button id="clearArtButton" class="secondary-action" type="button">Clear Art Layer</button>
+      </div>
+
+      <div class="panel-section" data-panel-content="ai">
+        <h2>AI Design</h2>
+        <label for="aiPrompt">Describe original artwork</label>
+        <textarea id="aiPrompt" rows="6" maxlength="900" placeholder="A purple and blue family crest with bold readable lettering and a warm handmade feel."></textarea>
+        <button id="generateAiButton" class="primary-action" type="button">Generate AI Artwork</button>
+        <button id="refineAiButton" class="secondary-action" type="button" disabled>Use Included Edit</button>
+        <p id="aiPolicy" class="note">Two AI edits are included. Additional edits are $1 each. AI concepts are previews until you approve the design.</p>
+      </div>
+
+      <div class="panel-section" data-panel-content="names">
+        <h2>Names / Numbers</h2>
+        <label for="nameInput">Name</label>
+        <input id="nameInput" maxlength="20" placeholder="RAMFAM" />
+        <label for="numberInput">Number</label>
+        <input id="numberInput" maxlength="3" placeholder="24" inputmode="numeric" />
+        <button id="placeNameButton" class="secondary-action" type="button">Place on Back</button>
+      </div>
+    </section>
+
+    <section class="canvas-area" aria-label="Garment design canvas">
+      <div class="canvas-toolbar">
+        <div class="view-toggle" role="group" aria-label="Garment view">
+          <button id="frontViewButton" class="active" type="button">Front</button>
+          <button id="backViewButton" type="button">Back</button>
+        </div>
+        <div id="canvasStatus" class="canvas-status" role="status" aria-live="polite">Ready</div>
+        <div class="toolbar-actions">
+          <button id="centerArtButton" class="secondary-action" type="button">Center Art</button>
+          <button id="approveButton" class="primary-action" type="button" disabled>Approve Design</button>
+        </div>
+      </div>
+
+      <div class="canvas-shell">
+        <canvas id="designCanvas" width="1200" height="1200" aria-label="Garment design preview"></canvas>
+      </div>
+    </section>
+
+    <aside class="summary-panel" aria-label="Design summary">
+      <div class="mini-preview">
+        <canvas id="miniCanvas" width="480" height="480" aria-label="Small garment preview"></canvas>
+      </div>
+      <dl>
+        <div><dt>Product</dt><dd id="summaryProduct">Classic Tee</dd></div>
+        <div><dt>Color</dt><dd id="summaryColor">White</dd></div>
+        <div><dt>View</dt><dd id="summaryView">Front</dd></div>
+        <div><dt>AI edits left</dt><dd id="summaryEdits">2</dd></div>
+      </dl>
+      <p class="note">Checkout becomes available after you approve the design and choose a product.</p>
+    </aside>
+  </main>
+
+  <section id="checkout" class="progress-checkout" aria-label="Design progression and checkout">
+    <div class="stepper" aria-label="Order progress">
+      <button class="step active" type="button" data-step="design">1 <span>Design</span></button>
+      <button class="step" type="button" data-step="quantity">2 <span>Quantity &amp; Sizes</span></button>
+      <button class="step" type="button" data-step="review">3 <span>Review</span></button>
+    </div>
+
+    <form id="checkoutForm" class="checkout-form">
+      <label for="variantSelect">Product</label>
+      <select id="variantSelect" required disabled>
+        <option value="">Loading products...</option>
+      </select>
+      <label for="quantityInput">Quantity</label>
+      <input id="quantityInput" type="number" min="1" max="250" value="1" inputmode="numeric" />
+      <button id="checkoutButton" class="primary-action" type="submit" disabled>Continue to Checkout</button>
+    </form>
+    <p id="checkoutMessage" class="note">Approve the design first, then continue to checkout.</p>
+  </section>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

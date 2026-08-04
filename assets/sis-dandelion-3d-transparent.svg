@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Transparent premium 3D dandelion</title>
+  <desc id="desc">A luminous white dandelion seed head with transparent background, soft depth, and warm violet-blue lighting.</desc>
+  <defs>
+    <radialGradient id="seedGlow" cx="45%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.42" stop-color="#f5f0ff" stop-opacity="0.94"/>
+      <stop offset="0.75" stop-color="#cfeaff" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#8d61c8" stop-opacity="0.16"/>
+    </radialGradient>
+    <linearGradient id="stemGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="0.52" stop-color="#d8c8ff"/>
+      <stop offset="1" stop-color="#5a2c91"/>
+    </linearGradient>
+    <filter id="soft3d" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#120b22" flood-opacity="0.18"/>
+      <feDropShadow dx="-12" dy="-8" stdDeviation="18" flood-color="#ffffff" flood-opacity="0.58"/>
+      <feDropShadow dx="18" dy="8" stdDeviation="22" flood-color="#2f8eeb" flood-opacity="0.18"/>
+    </filter>
+    <filter id="filamentGlow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.78" result="glow"/>
+      <feComposite in="glow" in2="blur" operator="in" result="coloredGlow"/>
+      <feMerge><feMergeNode in="coloredGlow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="tuft">
+      <path d="M0 0 C-18 -34 -30 -76 -22 -119" fill="none" stroke="#fffdf8" stroke-width="2.2" stroke-linecap="round" opacity="0.86"/>
+      <path d="M-22 -119 C-58 -143 -82 -170 -92 -205" fill="none" stroke="#fffdf8" stroke-width="2" stroke-linecap="round" opacity="0.74"/>
+      <path d="M-22 -119 C-28 -157 -21 -190 -4 -220" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.88"/>
+      <path d="M-22 -119 C18 -146 42 -177 51 -210" fill="none" stroke="#e8f6ff" stroke-width="1.8" stroke-linecap="round" opacity="0.78"/>
+      <circle cx="-92" cy="-205" r="5.5" fill="url(#seedGlow)" opacity="0.95"/>
+      <circle cx="-4" cy="-220" r="6.5" fill="url(#seedGlow)" opacity="1"/>
+      <circle cx="51" cy="-210" r="5.8" fill="url(#seedGlow)" opacity="0.94"/>
+    </g>
+  </defs>
+
+  <g filter="url(#soft3d)">
+    <path d="M573 657 C506 774 453 914 407 1118" fill="none" stroke="url(#stemGrad)" stroke-width="26" stroke-linecap="round" opacity="0.66"/>
+    <path d="M596 660 C540 807 509 948 494 1138" fill="none" stroke="#fffdf8" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+    <circle cx="590" cy="610" r="42" fill="url(#seedGlow)" opacity="0.82"/>
+  </g>
+
+  <g transform="translate(590 610)" filter="url(#filamentGlow)">
+    <g opacity="0.96">
+      <use href="#tuft" transform="rotate(0) scale(1.02)"/>
+      <use href="#tuft" transform="rotate(16) scale(.96)"/>
+      <use href="#tuft" transform="rotate(32) scale(1.04)"/>
+      <use href="#tuft" transform="rotate(48) scale(.91)"/>
+      <use href="#tuft" transform="rotate(64) scale(1.08)"/>
+      <use href="#tuft" transform="rotate(80) scale(.94)"/>
+      <use href="#tuft" transform="rotate(96) scale(1.01)"/>
+      <use href="#tuft" transform="rotate(112) scale(.9)"/>
+      <use href="#tuft" transform="rotate(128) scale(1.05)"/>
+      <use href="#tuft" transform="rotate(144) scale(.97)"/>
+      <use href="#tuft" transform="rotate(160) scale(1.03)"/>
+      <use href="#tuft" transform="rotate(176) scale(.91)"/>
+      <use href="#tuft" transform="rotate(192) scale(1.06)"/>
+      <use href="#tuft" transform="rotate(208) scale(.95)"/>
+      <use href="#tuft" transform="rotate(224) scale(1.02)"/>
+      <use href="#tuft" transform="rotate(240) scale(.92)"/>
+      <use href="#tuft" transform="rotate(256) scale(1.08)"/>
+      <use href="#tuft" transform="rotate(272) scale(.96)"/>
+      <use href="#tuft" transform="rotate(288) scale(1.02)"/>
+      <use href="#tuft" transform="rotate(304) scale(.94)"/>
+      <use href="#tuft" transform="rotate(320) scale(1.05)"/>
+      <use href="#tuft" transform="rotate(336) scale(.98)"/>
+    </g>
+    <g opacity="0.84" transform="scale(.72)">
+      <use href="#tuft" transform="rotate(8) scale(.85)"/>
+      <use href="#tuft" transform="rotate(38) scale(.96)"/>
+      <use href="#tuft" transform="rotate(68) scale(.9)"/>
+      <use href="#tuft" transform="rotate(98) scale(.99)"/>
+      <use href="#tuft" transform="rotate(128) scale(.87)"/>
+      <use href="#tuft" transform="rotate(158) scale(.94)"/>
+      <use href="#tuft" transform="rotate(188) scale(.9)"/>
+      <use href="#tuft" transform="rotate(218) scale(.98)"/>
+      <use href="#tuft" transform="rotate(248) scale(.86)"/>
+      <use href="#tuft" transform="rotate(278) scale(.94)"/>
+      <use href="#tuft" transform="rotate(308) scale(.9)"/>
+      <use href="#tuft" transform="rotate(338) scale(.97)"/>
+    </g>
+    <circle r="17" fill="#fffdf8" opacity="0.84"/>
+    <circle r="7" fill="#5a2c91" opacity="0.38"/>
+  </g>
+</svg>

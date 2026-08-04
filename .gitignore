@@ -1,0 +1,9 @@
+# Live connector settings stay local and are never committed.
+sis-config.js
+api/
+Deleanas_Screenshots_Website_Mockup_Reference/
+**/atlas_upload_center_full_replacements/
+assets/atlas_upload_center_full_replacements.zip
+*.log
+.DS_Store
+Thumbs.db

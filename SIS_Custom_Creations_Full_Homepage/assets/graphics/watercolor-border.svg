@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" preserveAspectRatio="none">
+  <defs>
+    <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <g filter="url(#blur)" opacity=".75">
+    <circle cx="90" cy="320" r="155" fill="#d8c7f0"/>
+    <circle cx="230" cy="300" r="150" fill="#dfe8fb"/>
+    <circle cx="410" cy="345" r="155" fill="#7152a5" opacity=".35"/>
+    <circle cx="1340" cy="300" r="160" fill="#dfe8fb"/>
+    <circle cx="1490" cy="330" r="150" fill="#d8c7f0"/>
+    <circle cx="1160" cy="350" r="120" fill="#7b93d1" opacity=".35"/>
+  </g>
+</svg>
