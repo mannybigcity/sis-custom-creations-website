@@ -4,7 +4,6 @@ import {
   PARTY_TYPES,
   chicagoToday,
   dayState,
-  demoHolds,
   formatDay,
   formatMonth,
   formatStart,
@@ -19,6 +18,7 @@ const apiBase = String(config.apiBase || "https://atlasforentrepreneurs.com").re
 const availabilityPath = config.availabilityPath || "/api/sis/party-availability";
 
 const today = chicagoToday();
+const LOAD_ERROR = "Couldn’t load availability — try again";
 const state = {
   mode: "loading",
   month: today.slice(0, 7),
@@ -26,6 +26,7 @@ const state = {
   slot: null,
   startTime: null,
   holds: [],
+  loadedMonths: new Set(),
   message: "",
   messageTone: "",
   suggestions: [],
@@ -60,18 +61,29 @@ function setMessage(text, tone = "") {
   message.dataset.tone = tone;
 }
 
+function monthReady(date) {
+  return state.loadedMonths.has(String(date).slice(0, 7));
+}
+
 function renderMode() {
   if (!modeNote) return;
+  modeNote.dataset.mode = state.mode;
+  modeNote.replaceChildren();
   if (state.mode === "live") {
-    modeNote.dataset.mode = "live";
-    modeNote.textContent = "Live SIS availability. Bright purple still has an open block. Light purple means both AM and PM are held.";
-  } else if (state.mode === "demo") {
-    modeNote.dataset.mode = "demo";
-    modeNote.textContent = "Preview sample — not live availability. Colors follow the real rules. A request on this page is not saved until Atlas /api/sis/party-availability is deployed for the SIS organization.";
-  } else {
-    modeNote.dataset.mode = "loading";
-    modeNote.textContent = "Checking SIS availability…";
+    modeNote.textContent = "Bright purple still has an open block. Light purple means both AM and PM are held.";
+    return;
   }
+  if (state.mode === "error") {
+    modeNote.append(LOAD_ERROR);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "retry";
+    button.textContent = "Try again";
+    button.addEventListener("click", () => refreshMonth());
+    modeNote.append(" ", button);
+    return;
+  }
+  modeNote.textContent = "Checking SIS availability…";
 }
 
 function render() {
@@ -106,15 +118,16 @@ function renderGrid() {
   grid.replaceChildren();
   for (const cell of monthGrid(state.month)) {
     const day = dayState(state.holds, cell.date, today);
+    const ready = cell.inMonth && monthReady(cell.date);
     const button = document.createElement("button");
     button.type = "button";
     button.className = "day";
-    button.dataset.shade = cell.inMonth ? day.shade : "outside";
+    button.dataset.shade = !cell.inMonth ? "outside" : ready ? day.shade : "waiting";
     if (cell.date === state.selected) button.dataset.selected = "true";
     if (cell.date === today) button.dataset.today = "true";
     button.setAttribute("aria-pressed", cell.date === state.selected ? "true" : "false");
     if (cell.date === today) button.setAttribute("aria-current", "date");
-    const shadeLabel = !cell.inMonth
+    const shadeLabel = !ready
       ? ""
       : cell.date < today
         ? day.shade === "light" ? "Full" : "Past"
@@ -141,19 +154,28 @@ function renderGrid() {
 
 function renderDay() {
   const day = dayState(state.holds, state.selected, today);
+  const ready = monthReady(state.selected);
   if (dayTitle) dayTitle.textContent = formatDay(state.selected);
   if (!slotRow) return;
   slotRow.replaceChildren();
   for (const slot of ["am", "pm"]) {
     const card = document.createElement("article");
     card.className = "slot-card";
-    const open = day[slot] === "open" && state.selected >= today;
+    const open = ready && day[slot] === "open" && state.selected >= today;
     card.dataset.state = open ? "open" : "held";
     if (state.slot === slot) card.dataset.selected = "true";
     const title = document.createElement("h3");
     title.textContent = BLOCKS[slot].label;
     const copy = document.createElement("p");
-    copy.textContent = open ? BLOCKS[slot].detail : state.selected < today ? "That day has passed." : "This block is held.";
+    copy.textContent = !ready
+      ? state.mode === "loading"
+        ? "Checking this day…"
+        : LOAD_ERROR
+      : open
+        ? BLOCKS[slot].detail
+        : state.selected < today
+          ? "That day has passed."
+          : "This block is held.";
     card.append(title, copy);
     if (open) {
       const button = document.createElement("button");
@@ -176,7 +198,7 @@ function renderDay() {
 
 function renderStarts(day) {
   if (!startRow || !form) return;
-  const slotOpen = state.slot && day[state.slot] === "open" && state.selected >= today;
+  const slotOpen = monthReady(state.selected) && state.slot && day[state.slot] === "open" && state.selected >= today;
   startRow.hidden = !slotOpen;
   if (inquiryCard) inquiryCard.hidden = !slotOpen || !state.startTime;
   startRow.replaceChildren();
@@ -207,15 +229,18 @@ function renderStarts(day) {
   }
 }
 
-function selectDate(date, inMonth) {
+async function selectDate(date, inMonth) {
   state.selected = date;
   state.slot = null;
   state.startTime = null;
   state.suggestions = [];
   setMessage("");
   if (!inMonth) state.month = date.slice(0, 7);
+  if (!monthReady(date)) {
+    await refreshMonth();
+    return;
+  }
   render();
-  if (!inMonth && state.mode === "live") loadMonth(state.month, { keepSelection: true });
 }
 
 async function loadMonth(month, { keepSelection = false } = {}) {
@@ -230,6 +255,7 @@ async function loadMonth(month, { keepSelection = false } = {}) {
     const body = await response.json();
     if (!body || body.ok !== true || body.mode !== "live" || !Array.isArray(body.days)) throw new Error("unavailable");
     state.mode = "live";
+    state.loadedMonths.add(month);
     state.holds = mergeHolds(state.holds, holdsFromDays(body.days), month);
     if (!keepSelection) {
       state.selected = state.selected.slice(0, 7) === month ? state.selected : `${month}-01`;
@@ -248,14 +274,19 @@ function mergeHolds(existing, incoming, month) {
   return kept.concat(incoming);
 }
 
-async function boot() {
+async function refreshMonth() {
+  state.mode = "loading";
+  setMessage("");
   render();
-  const live = await loadMonth(state.month);
+  const live = await loadMonth(state.month, { keepSelection: true });
   if (!live) {
-    state.mode = "demo";
-    state.holds = demoHolds(today);
+    state.mode = "error";
     render();
   }
+}
+
+async function boot() {
+  await refreshMonth();
 }
 
 document.querySelector("[data-prev-month]")?.addEventListener("click", () => changeMonth(-1));
@@ -265,11 +296,8 @@ async function changeMonth(delta) {
   state.month = shiftMonth(state.month, delta);
   state.slot = null;
   state.startTime = null;
-  render();
-  if (state.mode === "live") {
-    const ok = await loadMonth(state.month);
-    if (!ok) setMessage("Live availability did not load for that month. Try again in a moment.", "warn");
-  }
+  state.selected = `${state.month}-01`;
+  await refreshMonth();
 }
 
 form?.addEventListener("submit", async (event) => {
@@ -296,8 +324,8 @@ form?.addEventListener("submit", async (event) => {
     setMessage("Choose an open block and a start time first.", "warn");
     return;
   }
-  if (state.mode !== "live") {
-    setMessage("This is a preview sample. Nothing was saved. When the SIS party API is live, this same form creates a tentative hold for the whole block.", "warn");
+  if (state.mode !== "live" || !monthReady(payload.date)) {
+    setMessage("Couldn’t save that request. Try again.", "warn");
     return;
   }
   state.submitting = true;
@@ -333,9 +361,9 @@ form?.addEventListener("submit", async (event) => {
       setMessage("Too many requests from this network right now. Wait a bit, then try again.", "warn");
       return;
     }
-    setMessage("That request was not saved. Check the name, email, and time, then try again.", "warn");
+    setMessage("Couldn’t save that request. Check the name, email, and time, then try again.", "warn");
   } catch {
-    setMessage("The SIS calendar could not be reached. Nothing was saved.", "warn");
+    setMessage("Couldn’t save that request. Try again.", "warn");
   } finally {
     state.submitting = false;
     if (submitButton) submitButton.disabled = false;

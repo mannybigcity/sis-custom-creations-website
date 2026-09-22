@@ -31,14 +31,14 @@ a { color: inherit; }
 button, input, select, textarea { font: inherit; }
 h1, h2, h3, p { margin-top: 0; }
 
-.preview-banner {
+.stage-banner {
   background: #2a1248;
   color: white;
   text-align: center;
   padding: 10px 16px;
   font-size: 0.92rem;
 }
-.preview-banner strong { color: #f5d78a; }
+.stage-banner strong { color: #f5d78a; }
 
 .topbar {
   width: min(1120px, calc(100% - 28px));
@@ -77,6 +77,16 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.02; letter-spacing: -
 }
 .mode-note[data-mode="live"] { background: #f3e8ff; border-color: rgba(124, 58, 237, 0.28); }
 .mode-note[data-mode="loading"] { background: white; }
+.mode-note .retry {
+  margin-left: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--violet);
+  color: white;
+  font-weight: 750;
+  padding: 6px 12px;
+  cursor: pointer;
+}
 
 .legend { display: flex; flex-wrap: wrap; gap: 14px 18px; margin: 8px 0 18px; font-size: 0.92rem; font-weight: 700; }
 .swatch { width: 16px; height: 16px; border-radius: 5px; display: inline-block; margin-right: 6px; vertical-align: -2px; font-style: normal; }
@@ -119,6 +129,7 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.02; letter-spacing: -
 .day[data-shade="bright"] { background: var(--bright); color: white; border-color: var(--bright-edge); }
 .day[data-shade="light"] { background: var(--light); color: var(--light-ink); border-color: #d8b4fe; }
 .day[data-shade="outside"] { background: transparent; color: #c4bdd0; }
+.day[data-shade="waiting"] { background: #f4f0f8; color: #8a8494; }
 .day[data-selected="true"] { outline: 3px solid var(--gold); outline-offset: 1px; }
 .day-number { display: block; font-weight: 800; }
 .day[data-today="true"] .day-number { color: var(--gold); }

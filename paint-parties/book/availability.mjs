@@ -66,15 +66,6 @@ export function monthGrid(monthKey) {
   });
 }
 
-export function demoHolds(today) {
-  return [
-    { date: shiftDate(today, 3), slot: "am" },
-    { date: shiftDate(today, 8), slot: "am" },
-    { date: shiftDate(today, 8), slot: "pm" },
-    { date: shiftDate(today, 12), slot: "pm" },
-  ];
-}
-
 export function dayState(holds, date, today) {
   const am = holds.some((hold) => hold.date === date && hold.slot === "am") ? "held" : "open";
   const pm = holds.some((hold) => hold.date === date && hold.slot === "pm") ? "held" : "open";

@@ -1,10 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { dayState, demoHolds, monthBounds, monthGrid, shiftDate } from "./availability.mjs";
+import { dayState, monthBounds, monthGrid, shiftDate } from "./availability.mjs";
 
-test("sample holds leave one day full and the others bright", () => {
+test("one held block stays bright and both held blocks turn the day light", () => {
   const today = "2026-09-22";
-  const holds = demoHolds(today);
+  const holds = [
+    { date: shiftDate(today, 3), slot: "am" },
+    { date: shiftDate(today, 8), slot: "am" },
+    { date: shiftDate(today, 8), slot: "pm" },
+    { date: shiftDate(today, 12), slot: "pm" },
+  ];
   const open = dayState(holds, shiftDate(today, 1), today);
   const partial = dayState(holds, shiftDate(today, 3), today);
   const full = dayState(holds, shiftDate(today, 8), today);
