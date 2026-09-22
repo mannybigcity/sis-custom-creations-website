@@ -114,7 +114,15 @@ function renderGrid() {
     if (cell.date === today) button.dataset.today = "true";
     button.setAttribute("aria-pressed", cell.date === state.selected ? "true" : "false");
     if (cell.date === today) button.setAttribute("aria-current", "date");
-    const shadeLabel = !cell.inMonth ? "" : day.shade === "light" ? "Full" : day.am === "held" || day.pm === "held" ? "1 open" : "Open";
+    const shadeLabel = !cell.inMonth
+      ? ""
+      : cell.date < today
+        ? day.shade === "light" ? "Full" : "Past"
+        : day.shade === "light"
+          ? "Full"
+          : day.am === "held" || day.pm === "held"
+            ? "1 open"
+            : "Open";
     button.setAttribute("aria-label", `${formatDay(cell.date, { weekday: "long", month: "long", day: "numeric" })} ${shadeLabel}`.trim());
     const number = document.createElement("span");
     number.className = "day-number";
