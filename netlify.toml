@@ -1,0 +1,9 @@
+# Static preview of the SIS site. Do not attach siscustomcreations.com here.
+[build]
+  publish = "."
+  command = "true"
+
+[[headers]]
+  for = "/paint-parties/book/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

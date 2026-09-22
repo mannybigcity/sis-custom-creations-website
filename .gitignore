@@ -7,3 +7,4 @@ assets/atlas_upload_center_full_replacements.zip
 *.log
 .DS_Store
 Thumbs.db
+.vercel
