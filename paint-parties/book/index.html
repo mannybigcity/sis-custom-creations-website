@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="See open SIS Custom Creations paint party mornings and afternoons and request a tentative hold." />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Book a paint party | SIS Custom Creations</title>
+  <link rel="stylesheet" href="calendar.css" />
+</head>
+<body>
+  <p class="preview-banner">Staged preview for SIS Custom Creations. <strong>siscustomcreations.com is not attached</strong> and DNS is unchanged.</p>
+  <header class="topbar">
+    <a class="brand" href="../../index.html">
+      <img src="../../assets/Anima_SIS_Custom_Creations_Logo.png" alt="SIS Custom Creations" />
+      <span>
+        <strong>SIS Custom Creations</strong>
+        <small>Create. Connect. Celebrate.</small>
+      </span>
+    </a>
+    <nav class="top-links" aria-label="Party calendar">
+      <a href="../index.html">Paint parties</a>
+      <a href="../../splatter-paint-parties/index.html">Splatter parties</a>
+      <a href="../../index.html">Home</a>
+    </nav>
+  </header>
+
+  <main class="wrap" data-party-calendar>
+    <div class="intro">
+      <p class="eyebrow">Paint party dates</p>
+      <h1>Two parties a day. Pick a morning or an afternoon.</h1>
+      <p class="lead">AM is 9:00–1:00 and PM is 2:00–6:00 Central. The party itself is about 2–2.5 hours. Choosing a start time still holds the whole block, so the day is never double-booked.</p>
+    </div>
+
+    <p class="mode-note" data-mode-note data-mode="loading">Checking SIS availability…</p>
+    <div class="legend" aria-label="Calendar colors">
+      <span><i class="swatch bright" aria-hidden="true"></i> Block open</span>
+      <span><i class="swatch light" aria-hidden="true"></i> Day full</span>
+      <span class="gold-note">Today is gold type. Gold is not a booking.</span>
+    </div>
+
+    <section class="calendar-card" aria-labelledby="month-title">
+      <div class="month-bar">
+        <button type="button" data-prev-month>Previous</button>
+        <h2 id="month-title" data-month-label>Month</h2>
+        <button type="button" data-next-month>Next</button>
+      </div>
+      <div class="weekdays" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="days" data-day-grid></div>
+
+      <div class="day-panel">
+        <h2 data-day-title>Day</h2>
+        <p>Each block is 4 hours. Max two parties a day.</p>
+        <div class="slot-row" data-slot-row></div>
+        <div class="start-block" data-start-row hidden></div>
+        <p class="calendar-message" data-calendar-message hidden></p>
+        <div class="suggestions" data-suggestions></div>
+      </div>
+    </section>
+
+    <section class="inquiry-card" data-inquiry-card hidden>
+      <h2>Request this block</h2>
+      <p class="fine" data-selection-summary></p>
+      <form data-inquiry-form>
+        <label class="hp">Company website<input name="companyWebsite" type="text" tabindex="-1" autocomplete="off" /></label>
+        <div class="form-grid">
+          <label>Name *<input name="name" type="text" autocomplete="name" required /></label>
+          <label>Email *<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+          <label>Party type *
+            <select name="partyType" required>
+              <option value="">Choose one</option>
+            </select>
+          </label>
+          <label>Guest count<input name="guestCount" type="number" min="1" max="500" inputmode="numeric" /></label>
+          <label>Zip code<input name="zip" type="text" inputmode="numeric" placeholder="77429" /></label>
+        </div>
+        <label>Notes<textarea name="notes" rows="4" maxlength="2000" placeholder="Ages, venue, and anything SIS should know."></textarea></label>
+        <label class="consent"><input name="consent" type="checkbox" required /> I am ready for SIS Custom Creations to contact me about this party. This request is tentative until SIS confirms it.</label>
+        <button class="primary" type="submit">Hold this block</button>
+        <p class="fine">A hold is a tentative inquiry. It occupies the full AM or PM block. SIS confirms the party before it is booked.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>SIS Custom Creations · Cypress and greater Houston · America/Chicago</p>
+  </footer>
+  <script src="config.js"></script>
+  <script type="module" src="calendar.mjs"></script>
+</body>
+</html>
