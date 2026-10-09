@@ -161,9 +161,9 @@
       </select>
       <label for="quantityInput">Quantity</label>
       <input id="quantityInput" type="number" min="1" max="250" value="1" inputmode="numeric" />
-      <button id="checkoutButton" class="primary-action" type="submit" disabled>Continue to Checkout</button>
+      <button id="checkoutButton" class="primary-action" type="submit" disabled data-stripe-link="TODO" data-paypal-slot="replace">Book / Pay coming soon</button>
     </form>
-    <p id="checkoutMessage" class="note">Approve the design first, then continue to checkout.</p>
+    <p id="checkoutMessage" class="note" data-payment-slot="paypal-replace">PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.</p>
   </section>
 
   <script src="script.js" defer></script>

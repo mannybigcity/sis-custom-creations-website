@@ -45,20 +45,13 @@ function startKitIntro() {
 
 function configureSubscriptionButton() {
   if (!subscribeButton) return;
-  const url = (window.SIS_DIY_KITS_CONFIG?.paypalSubscriptionUrl || '').trim();
-  if (!url) {
-    subscribeButton.textContent = 'Join the interest list';
-    subscribeButton.setAttribute('aria-disabled', 'true');
-    subscribeButton.classList.add('disabled');
-    subscribeButton.addEventListener('click', (event) => event.preventDefault());
-    return;
-  }
-  subscribeButton.href = url;
-  subscribeButton.textContent = 'Subscribe with PayPal';
-  subscribeButton.removeAttribute('aria-disabled');
-  subscribeButton.classList.remove('disabled');
-  subscribeButton.target = '_blank';
-  subscribeButton.rel = 'noopener noreferrer';
+  subscribeButton.textContent = 'Book / Pay coming soon';
+  subscribeButton.href = '#pay-coming-soon';
+  subscribeButton.setAttribute('aria-disabled', 'true');
+  subscribeButton.setAttribute('data-paypal-slot', 'replace');
+  subscribeButton.setAttribute('data-stripe-link', 'TODO');
+  subscribeButton.classList.add('disabled');
+  subscribeButton.addEventListener('click', (event) => event.preventDefault());
 }
 
 document.addEventListener('DOMContentLoaded', () => {

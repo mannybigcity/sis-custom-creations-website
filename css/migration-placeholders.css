@@ -1,0 +1,31 @@
+/* Standalone migration placeholders. Not a live payment integration. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  background: #fff;
+  color: #17152d;
+  padding: .6rem 1rem;
+  border-radius: 999px;
+}
+.skip-link:focus { top: 1rem; }
+.payment-placeholder {
+  margin: 3rem auto 4rem;
+  max-width: 860px;
+  padding: 0 1.25rem;
+  text-align: center;
+}
+.payment-placeholder__actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+a[data-stripe-link="TODO"],
+a[data-paypal-slot="replace"][aria-disabled="true"] {
+  cursor: not-allowed;
+}
+.static-form-note {
+  margin: 0 0 1rem;
+  padding: .85rem 1rem;
+  border-radius: 1rem;
+  background: #fff7e8;
+  color: #3d2a12;
+  font-size: .95rem;
+}

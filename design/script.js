@@ -407,88 +407,31 @@
     }
   }
 
-  async function loadShopifyVariants() {
-    try {
-      const data = await requestJson("/api/shopify-catalog.php?limit=50");
-      state.variants = data.variants || [];
-      els.variantSelect.innerHTML = "";
-      if (!state.variants.length) {
-        els.variantSelect.innerHTML = '<option value="">No products found</option>';
-        setCheckoutMessage("No products are available right now.", "error");
-        return;
-      }
-      const empty = document.createElement("option");
-      empty.value = "";
-      empty.textContent = "Choose a product";
-      els.variantSelect.appendChild(empty);
-      state.variants.forEach((variant) => {
-        const option = document.createElement("option");
-        option.value = variant.variant_id;
-        option.textContent = `${variant.product?.title || "Custom product"} / ${variant.title}${variant.price ? ` - $${variant.price}` : ""}`;
-        els.variantSelect.appendChild(option);
-      });
-      els.variantSelect.disabled = false;
-      setCheckoutMessage("Products are available after design approval.");
-    } catch (error) {
-      state.variants = PRODUCTS.map((product) => ({
-        variant_id: `local-${product.id}`,
-        product: { title: product.label },
-        title: `${product.fit} / starting at $${product.price}`,
-        price: product.price
-      }));
-      els.variantSelect.innerHTML = '<option value="">Choose a product</option>';
-      state.variants.forEach((variant) => {
-        const option = document.createElement("option");
-        option.value = variant.variant_id;
-        option.textContent = `${variant.product.title} / ${variant.title}`;
-        els.variantSelect.appendChild(option);
-      });
-      els.variantSelect.disabled = false;
-      setCheckoutMessage("Product options are ready. Submit a quote request to confirm availability and pricing.", "success");
-    }
+  function loadLocalVariants() {
+    state.variants = PRODUCTS.map((product) => ({
+      variant_id: `local-${product.id}`,
+      product: { title: product.label },
+      title: `${product.fit} / starting at $${product.price}`,
+      price: product.price
+    }));
+    els.variantSelect.innerHTML = '<option value="">Choose a product</option>';
+    state.variants.forEach((variant) => {
+      const option = document.createElement("option");
+      option.value = variant.variant_id;
+      option.textContent = `${variant.product.title} / ${variant.title}`;
+      els.variantSelect.appendChild(option);
+    });
+    els.variantSelect.disabled = false;
+    setCheckoutMessage("PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.");
   }
 
   function updateCheckoutEnabled() {
     els.checkoutButton.disabled = !(state.approved && state.mockupId && els.variantSelect.value);
   }
 
-  async function prepareCheckout(event) {
+  function prepareCheckout(event) {
     event.preventDefault();
-    if (!state.approved || !state.mockupId) {
-      setCheckoutMessage("Approve an AI design before checkout.", "error");
-      return;
-    }
-    try {
-      const data = await requestJson("/api/shopify-checkout.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          designId: state.mockupId,
-          variantId: els.variantSelect.value,
-          quantity: Number(els.quantityInput.value || 1),
-          finalApproval: true
-        })
-      });
-      setCheckoutMessage(data.message, "success");
-      window.location.assign(data.checkout_url);
-    } catch (error) {
-      const product = state.variants.find((variant) => variant.variant_id === els.variantSelect.value);
-      const details = [
-        `Design studio product: ${product?.product?.title || state.product.label}`,
-        `Color: ${titleCase(state.color)}`,
-        `Quantity: ${Number(els.quantityInput.value || 1)}`,
-        `Design request: ${state.text || els.aiPrompt.value.trim() || 'Custom artwork'}`,
-        `Live checkout status: ${error.message}`
-      ].join('\n');
-      const params = new URLSearchParams({
-        service: 'Personalized apparel or gifts',
-        details,
-        quantity: String(Number(els.quantityInput.value || 1)),
-        source: 'design-studio'
-      });
-      setCheckoutMessage("Payment checkout is not connected on this host. Your design is ready to send as a quote request.", "success");
-      window.location.assign(`../contact/index.html?${params.toString()}#request`);
-    }
+    setCheckoutMessage("Book / Pay coming soon. PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.", "success");
   }
 
   document.querySelectorAll(".tool-button").forEach((button) => button.addEventListener("click", () => showPanel(button.dataset.panel)));
@@ -571,5 +514,5 @@
     renderColors();
     renderCanvas();
   });
-  loadShopifyVariants();
+  loadLocalVariants();
 }());
