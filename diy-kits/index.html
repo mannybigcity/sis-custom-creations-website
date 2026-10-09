@@ -93,9 +93,9 @@
       <div>
         <p class="eyebrow">Subscription-ready</p>
         <h2>Join the list for kit updates.</h2>
-        <p>Add the real PayPal subscription URL in <code>config.js</code> when the kit plan is ready. Until then, this button stays as an interest list.</p>
+        <p data-payment-slot="paypal-replace">The PayPal subscription slot stays tagged for replacement. Stripe Payment Links are not connected yet.</p>
       </div>
-      <a class="button primary disabled" id="paypal-subscribe" href="#" aria-disabled="true">Join the interest list</a>
+      <a class="button primary disabled" id="paypal-subscribe" href="#pay-coming-soon" data-paypal-slot="replace" data-stripe-link="TODO" aria-disabled="true">Book / Pay coming soon</a>
     </section>
 
     <section class="request" id="request" aria-labelledby="request-title">
