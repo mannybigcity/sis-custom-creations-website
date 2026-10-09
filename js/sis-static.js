@@ -40,7 +40,7 @@
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var note = noteFor(form);
-      note.textContent = "Online requests are paused while this site moves off Shopify. Email siscustomcreationstx@gmail.com and SIS will follow up. Book / Pay coming soon.";
+      note.textContent = "Online requests are paused while this site moves off Shopify. Email siscustomcreationstx@gmail.com and SIS will follow up.";
     });
   });
 
@@ -51,13 +51,4 @@
     image.replaceWith(note);
   });
 
-  document.querySelectorAll('[data-stripe-link="TODO"]').forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      var slot = document.getElementById("checkout") || document.getElementById("pay-coming-soon");
-      if (slot && typeof slot.scrollIntoView === "function") {
-        slot.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-  });
 })();

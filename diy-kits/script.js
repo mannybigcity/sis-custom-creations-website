@@ -1,7 +1,7 @@
 const kitIntro = document.querySelector('#kit-intro');
 const kitVideo = document.querySelector('#kit-video');
 const skipKitIntro = document.querySelector('#skip-kit-intro');
-const subscribeButton = document.querySelector('#paypal-subscribe');
+const subscribeButton = document.querySelector('#stripe-subscribe');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const introRequested = new URLSearchParams(window.location.search).get('intro') === 'build';
 
@@ -45,13 +45,13 @@ function startKitIntro() {
 
 function configureSubscriptionButton() {
   if (!subscribeButton) return;
-  subscribeButton.textContent = 'Book / Pay coming soon';
-  subscribeButton.href = '#pay-coming-soon';
-  subscribeButton.setAttribute('aria-disabled', 'true');
-  subscribeButton.setAttribute('data-paypal-slot', 'replace');
-  subscribeButton.setAttribute('data-stripe-link', 'TODO');
-  subscribeButton.classList.add('disabled');
-  subscribeButton.addEventListener('click', (event) => event.preventDefault());
+  const subscribeUrl = 'https://buy.stripe.com/fZu9AS4ba5ss64JenzfMA00';
+  subscribeButton.textContent = 'Subscribe $38/mo';
+  subscribeButton.href = subscribeUrl;
+  subscribeButton.removeAttribute('aria-disabled');
+  subscribeButton.removeAttribute('data-paypal-slot');
+  subscribeButton.setAttribute('data-stripe-link', subscribeUrl);
+  subscribeButton.classList.remove('disabled');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

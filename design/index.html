@@ -161,9 +161,9 @@
       </select>
       <label for="quantityInput">Quantity</label>
       <input id="quantityInput" type="number" min="1" max="250" value="1" inputmode="numeric" />
-      <button id="checkoutButton" class="primary-action" type="submit" disabled data-stripe-link="TODO" data-paypal-slot="replace">Book / Pay coming soon</button>
+      <a id="checkoutButton" class="primary-action" data-stripe-link="https://buy.stripe.com/9B600ifTSf3264JbbnfMA09" href="https://buy.stripe.com/9B600ifTSf3264JbbnfMA09">Pay $50 deposit</a>
     </form>
-    <p id="checkoutMessage" class="note" data-payment-slot="paypal-replace">PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.</p>
+    <p id="checkoutMessage" class="note">Pay the $50 deposit to start this custom order. SIS confirms the final balance before production.</p>
   </section>
 
   <script src="script.js" defer></script>
