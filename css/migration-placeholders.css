@@ -1,4 +1,4 @@
-/* Standalone migration placeholders. Not a live payment integration. */
+/* Shared payment-section layout. Live buttons use buy.stripe.com Payment Links. */
 .skip-link {
   position: absolute;
   left: 1rem;

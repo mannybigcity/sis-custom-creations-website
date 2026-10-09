@@ -422,16 +422,17 @@
       els.variantSelect.appendChild(option);
     });
     els.variantSelect.disabled = false;
-    setCheckoutMessage("PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.");
+    setCheckoutMessage("Pay the $50 deposit to start this custom order. SIS confirms the final balance before production.");
   }
 
   function updateCheckoutEnabled() {
+    if (!els.checkoutButton || els.checkoutButton.tagName !== "BUTTON") return;
     els.checkoutButton.disabled = !(state.approved && state.mockupId && els.variantSelect.value);
   }
 
   function prepareCheckout(event) {
     event.preventDefault();
-    setCheckoutMessage("Book / Pay coming soon. PayPal checkout is tagged for replacement. Stripe Payment Links are not connected yet.", "success");
+    window.location.assign("https://buy.stripe.com/9B600ifTSf3264JbbnfMA09");
   }
 
   document.querySelectorAll(".tool-button").forEach((button) => button.addEventListener("click", () => showPanel(button.dataset.panel)));
@@ -488,13 +489,13 @@
       state.approved = true;
       els.approveButton.disabled = true;
       setStatus("Design approved and ready for checkout.", "success");
-      setCheckoutMessage("Approved. Choose a product and quantity.", "success");
+      setCheckoutMessage("Design approved. Pay the $50 deposit to start the order.", "success");
       updateCheckoutEnabled();
     } catch (error) {
       state.approved = true;
       els.approveButton.disabled = true;
       setStatus("Design approved locally and ready for a quote request.", "success");
-      setCheckoutMessage("Approved. Choose a product and submit your quote request.", "success");
+      setCheckoutMessage("Design approved. Pay the $50 deposit to start the order.", "success");
       updateCheckoutEnabled();
     }
   });

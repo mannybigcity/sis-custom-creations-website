@@ -11,11 +11,11 @@ function configureOfferButton(button, url, fallbackLabel) {
     return;
   }
   button.href = trimmedUrl;
-  button.textContent = 'Pay with PayPal';
+  button.textContent = 'Reserve with $50 deposit';
+  button.setAttribute('data-stripe-link', trimmedUrl);
   button.removeAttribute('aria-disabled');
+  button.removeAttribute('data-paypal-slot');
   button.classList.remove('disabled');
-  button.target = '_blank';
-  button.rel = 'noopener noreferrer';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
